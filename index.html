@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>San Valentín 💘</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      /* Cambio a gradiente morado */
+      background: linear-gradient(135deg, #6a11cb, #2575fc); 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      max-width: 360px;
+      animation: pop 0.8s ease;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-direction: column; 
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .row-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    button {
+      padding: 12px 26px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      transition: 0.3s;
+    }
+
+    /* Botón SI en tono fucsia/morado para que combine */
+    .yes { background: #b827fc; color: white; }
+    .no { background: #adb5bd; color: white; }
+    
+    .next-btn {
+      background: #6a11cb;
+      color: white;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <img src="pregunta.gif" alt="pregunta">
+    <div class="buttons">
+      <div class="row-buttons">
+        <button class="yes" onclick="respuestaSi()">Sí 💖</button>
+        <button class="no" onclick="respuestaNo()">No 💔</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function respuestaSi() {
+      document.getElementById('card').innerHTML = `
+        <img src="si.gif" alt="si">
+        <div class="buttons">
+          <button class="next-btn" onclick="mostrarGiffAtras()">Atrás ⬅️</button>
+        </div>
+      `;
+    }
+
+    function mostrarGiffAtras() {
+      document.getElementById('card').innerHTML = `
+        <img src="ATRAS.gif" alt="atras final">
+        <div class="buttons">
+          <button class="no" onclick="volverAlInicio()">Volver al Inicio 🏠</button>
+        </div>
+      `;
+    }
+
+    function respuestaNo() {
+      document.getElementById('card').innerHTML = `
+        <img src="no.gif" alt="no">
+        <div class="buttons">
+          <button class="no" onclick="volverAlInicio()">Intentar de nuevo ↩️</button>
+        </div>
+      `;
+    }
+
+    function volverAlInicio() {
+      document.getElementById('card').innerHTML = `
+        <img src="pregunta.gif" alt="pregunta">
+        <div class="buttons">
+          <div class="row-buttons">
+            <button class="yes" onclick="respuestaSi()">Sí 💖</button>
+            <button class="no" onclick="respuestaNo()">No 💔</button>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
